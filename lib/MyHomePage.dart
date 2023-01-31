@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'privacy_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -12,7 +13,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 1;
-  String jpg = '0001';
+  String jpg = '001';
   String zeros = '';
   int temp = 0;
   List<String> myIndex = [''];
@@ -25,60 +26,133 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     myIndex = [
-      'مقدمة',
-      'تسمية الوقوف',
-      'وقف السنة',
-      'الوقف اللازم',
-      'الوقف التام',
-      'الوقف الكافى',
-      'الوقف الحسن',
-      'الوقف الصالح',
-      'الوقف الجائز',
-      'وقف المعانقة',
-      'الوقف القبيح',
-      'الوقف على رؤوس الآى',
-      'الابتداء',
-      'فصل فى ذكر مسائل مهمة',
-      'مواضع عدم الوقف السبعة',
-      'المواضع الخمسة التى يترجح فيها الوصل',
-      'الوقف على (كلا)',
-      'وقف الازدواج',
-      'الوقف على (ذلك)',
-      'الوقف على (كذلك)',
-      'الوقف على (هذا)',
-      'معنى الوقف والسكت والقطع',
-      'خاتمة'
-    ];
+      'الفاتحة',
+      'البقرة',
+      'آل عمران',
+      'النساء',
+      'المائدة',
+      'الأنعام',
+      'الأعراف',
+      'الأنفال',
+      'التوبة',
+      'يونس',
+      'هود',
+      'يوسف',
+      'الرعد',
+      'إبراهيم',
+      'الحجر',
+      'النحل',
+      'الإسراء',
+      'الكهف',
+      'مريم',
+      'طه',
+      'الأنبياء',
+      'الحج',
+      'المؤمنون',
+      'النور',
+      'الفرقان',
+      'الشعراء',
+      'النمل',
+      'القصص',
+      'العنكبوت',
+      'الروم',
+      'لقمان',
+      'السجدة',
+      'الأحزاب',
+      'سبأ',
+      'فاطر',
+      'يس',
+      'الصافات',
+      'ص',
+      'الزمر',
+      'غافر',
+      'فصلت',
+      'الشورى',
+      'الزخرف',
+      'الدخان',
+      'الجاثية',
+      'الأحقاف',
+      'محمد',
+      'الفتح',
+      'الحجرات',
+      'ق',
+      'الذاريات',
+      'الطور',
+      'النجم',
+      'القمر',
+      'الرحمن',
+      'الواقعة',
+      'الحديد',
+      'المجادلة',
+      'الحشر',
+      'الممتحنة',
+      'الصف',
+      'الجمعة',
+      'المنافقون',
+      'التغابن',
+      'الطلاق',
+      'التحريم',
+      'الملك',
+      'القلم',
+      'الحاقة',
+      'المعارج',
+      'نوح',
+      'الجن',
+      'المزمل',
+      'المدثر',
+      'القيامة',
+      'الإنسان',
+      'المرسلات',
+      'النبأ',
+      'النازعات',
+      'عبس',
+      'التكوير',
+      'الانفطار',
+      'المطففين',
+      'الانشقاق',
+      'البروج',
+      'الطارق',
+      'الأعلى',
+      'الغاشية',
+      'الفجر',
+      'البلد',
+      'الشمس',
+      'الليل',
+      'الضحى',
+      'الشرح',
+      'التين',
+      'العلق',
+      'القدر',
+      'البينة',
+      'الزلزلة',
+      'العاديات',
+      'القارعة',
+      'التكاثر',
+      'العصر',
+      'الهمزة',
+      'الفيل',
+      'قريش',
+      'الماعون',
+      'الكوثر',
+      'الكافرون',
+      'النصر',
+      'المسد',
+      'الإخلاص',
+      'الفلق',
+      'الناس'
+    ]
+   ;
     pageNum = [
-      3,
-      10,
-      12,
-      14,
-      16,
-      25,
-      28,
-      32,
-      35,
-      37,
-      39,
-      49,
-      69,
-      71,
-      120,
-      125,
-      132,
-      168,
-      172,
-      176,
-      179,
-      182,
-      184
+      2,3,42,64,88,107,127,151,159,176,189,202,213,219,225,230,243,254,265,271,281,289,298,306,315,321,331,339,348,
+      355,360,364,366,375,381,386,391,398,403,410,418,424,429,435,437,441,445,449,452,455,458,460,463,465,468,471,474,478,
+      481,484,486,488,489,491,493,495,497,499,501,503,505,507,509,510,512,513,515,517,518,520,521,522,523,524,525,526,527,
+      528,529,530,531,531,532,532,533,533,534,534,535,536,536,537,537,538,538,538,539,539,539,540,540,541,541,541
     ];
   }
 
   void _makeFileName() {
     zeros = '';
-    temp = 4 - _counter.toString().length;
+    temp = 3 - _counter.toString().length;
     for (int i = 0; i < temp; i++) {
       zeros = zeros + '0';
     }
@@ -87,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _incrementCounter() {
-    if (_counter >= 197) {
+    if (_counter >= 543) {
       return;
     }
     setState(() {
@@ -110,9 +184,38 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('كتاب معالم الاهتداء للحصرى'),
-        actions: [IconButton(onPressed: (){
-          setState(() {privacy=!privacy;print(privacy);  });
+        title: const Text('المصحف الشريف'),
+        actions: [
+          IconButton(
+           onPressed: () async {
+              var prefs=await SharedPreferences.getInstance();
+              //prefs.setInt('ref', _counter).then((value) => print('saved $_counter'));
+              _counter = await prefs.setInt('ref', _counter).then((bool success) {
+                return _counter;});
+              setState(()  {
+                _counter;
+                });}
+             , icon: Icon(Icons.save)
+          ),
+          IconButton(
+              onPressed: () async {
+                var prefs=await SharedPreferences.getInstance();
+
+                setState(() {
+                  _counter=prefs.getInt('ref')!;
+                  _makeFileName();
+                  print(_counter);
+                });
+                }
+              , icon: Icon(Icons.download)
+          ),
+
+          IconButton(onPressed: (){
+          setState(() {
+          privacy=!privacy;print(privacy);
+         // print('pages'+pageNum.length.toString());
+         // print('surah'+myIndex.length.toString());
+          });
 
 
           //launchUrl(Uri(path:'https://github.com/mhussin2008/mohamed-privacy/blob/main/privacy-policy.md'));
@@ -146,7 +249,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       onTap: () {
                         setState(() {
-                          _counter = pageNum[index] + 2;
+                          _counter = pageNum[index] ;
                           privacy=true;
                           _makeFileName();
                         });
@@ -167,7 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         },
         child: Center(
-            child: Image.asset('assets/jpg/' + jpg + '.jpg')),
+            child: Image.asset('assets/quran_pages/' + 'mushaf_page'+jpg + '.jpg')),
       ):SingleChildScrollView(child: Text(privacy_text)),
     );
     // This trailing comma makes auto-formatting nicer for build methods.

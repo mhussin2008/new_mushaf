@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nadanewsoft.hosarywaqfibtida.hosary_ibtida_waqf">
+    package="com.nadanewsoft.newmushaf">
    <application
-        android:label="Hosary Waqf Ibtida"
+        android:label="Mushaf Masry"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
